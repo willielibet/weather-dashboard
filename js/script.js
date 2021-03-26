@@ -23,11 +23,9 @@ function currentWeather(){
     .then( response => {
         return response.json();
     }).then(function(response){
-        // let data = response;
+         let data = response;
 
-       
-
-        let weatherIcon= response.weather[0].icon;
+        let weatherIcon= data.weather[0].icon;
         let iconurl="https://openweathermap.org/img/wn/"+weatherIcon +"@2x.png";
 
 
@@ -36,16 +34,13 @@ function currentWeather(){
         let date = moment().format("MM/DD/YYYY"); 
 
          //icon
-        
         //current city, date and icon
-        $(currentCity).html(response.name +" ("+date+")" + "<img src="+iconurl+">");
+        $(currentCity).html(data.name +" ("+date+")" + "<img src="+iconurl+">");
        
-        let fahrenheitTemp = response.main.temp;
-        console.log("f" + fahrenheitTemp)
-        $(currentTemp).html((fahrenheitTemp).toFixed(2)+"&#8457");
-        $(currentHumidty).html(response.main.humidity+"%");
+        $(currentTemp).html((data.main.temp).toFixed(2)+"&#8457");
+        $(currentHumidty).html(data.main.humidity+"%");
 
-        let currentWindSpeed=(response.wind.speed*2.237).toFixed(1);
+        let currentWindSpeed=(data.wind.speed*2.237).toFixed(1);
         $(currentWSpeed).html(currentWindSpeed+" MPH");
     });
 }
