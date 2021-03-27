@@ -63,7 +63,7 @@ function UVIndex(lt,ln){
     let uvIndexData = response;
     $(currentUvindex).html(uvIndexData.value);
 
-//checking the UV-index-Scale reading
+    //checking the UV-index-Scale reading
     if (uvIndexData.value >= 0 && uvIndexData.value <= 2) {
         $(currentUvindex).text("Low: " + uvIndexData.value);
         $(currentUvindex).css("background", "green");
@@ -93,7 +93,7 @@ function forecast(cityid){
         return response.json();
     }).then(function(response){
         let forecastData = response;
-        
+        let i = 0;
         for (i=0;i<5;i++){
             let date = moment().add((i+1), 'days').format("MM/DD/YYYY"); 
             let iconcode= forecastData.list[((i+1)*8)-1].weather[0].icon;
