@@ -56,6 +56,7 @@ function currentWeather(){
 function UVIndex(lt,ln){
     let uvURL=`https://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${lt}&lon=${ln}`;
 
+    $(currentUvindex).empty();
     fetch(uvURL) 
     .then( response => {
         return response.json();
