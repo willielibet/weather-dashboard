@@ -27,7 +27,7 @@ function currentWeather(){
         let data = response;
 
         let weatherIcon= data.weather[0].icon;
-        let iconurl="https://openweathermap.org/img/wn/"+weatherIcon +"@2x.png";
+        let iconurl=`https://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
 
         //get city, date, and weather icon from api parse.
         //date
@@ -61,25 +61,35 @@ function UVIndex(lt,ln){
         return response.json();
     }).then(function(response){
     let uvIndexData = response;
-    $(currentUvindex).html(uvIndexData.value);
-
+    
     //checking the UV-index-Scale reading
     if (uvIndexData.value >= 0 && uvIndexData.value <= 2) {
         $(currentUvindex).text("Low: " + uvIndexData.value);
         $(currentUvindex).css("background", "green");
+        $(currentUvindex).html(uvIndexData.value);
     }
     else if (uvIndexData.value >= 3 && uvIndexData.value <= 5) {
         $(currentUvindex).text("Moderate: " + uvIndexData.value);
         $(currentUvindex).css("background", "yellow");
+        $(currentUvindex).html(uvIndexData.value);
     }
     else if (uvIndexData.value >= 6 && uvIndexData.value <= 7) {
         $(currentUvindex).text("High: " + uvIndexData.value);
         $(currentUvindex).css("background", "orange");
+        $(currentUvindex).html(uvIndexData.value);
     }
     else if (uvIndexData.value >= 8 && uvIndexData.value <= 10) {
         $(currentUvindex).text("Very High: " + uvIndexData.value);
         $(currentUvindex).css("background", "red");
+        $(currentUvindex).html(uvIndexData.value);
     }
+    else if (uvIndexData.value >= 11) {
+        $(currentUvindex).text("Extreme: " + uvIndexData.value);
+        $(currentUvindex).css("background", "purple");
+        $(currentUvindex).html(uvIndexData.value);
+    }
+    
+
     });
 
 }
